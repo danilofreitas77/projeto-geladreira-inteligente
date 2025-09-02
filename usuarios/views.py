@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Morador
 from .forms import MoradorForm
 import qrcode
@@ -39,7 +40,11 @@ def login_qr(request):
             request.session['morador_id'] = morador.id
             request.session['morador_nome'] = morador.user.username
             request.session['morador_email'] = morador.user.email  # email para relatório
-            return redirect('menu')  # substituir pelo menu da geladeira
+            return redirect('dashboard')
         except Morador.DoesNotExist:
             return render(request, 'usuarios/login.html', {'erro': 'QR Code inválido'})
     return render(request, 'usuarios/login.html')
+
+@login_required
+def dashboard(request):
+    return render(request, 'usuarios/dashboard.html')
