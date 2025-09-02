@@ -24,4 +24,5 @@ urlpatterns = [
     path('estoque/', include('estoque.urls')),
 
     path("", RedirectView.as_view(url="/usuarios/cadastro/")),
+    path('api/', include('compras.urls')),
 ]

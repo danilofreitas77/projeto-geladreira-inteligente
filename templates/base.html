@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Geladeira Inteligente{% endblock %}</title>
+    <title>{% block title %}Geladeira Inteligente - Take and Go{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
@@ -13,6 +13,9 @@
         <div class="container">
             <h1>Geladeira Inteligente</h1>
         </div>
+ <a href="{% url 'carrinho' %}">🛒 Carrinho</a>
+
+
     </header>
 
     <main class="container mb-4">
@@ -22,6 +25,8 @@
     <footer class="bg-dark text-white text-center p-3">
         <p>© 2025 Geladeira Inteligente</p>
     </footer>
+
+    {% block scripts %}{% endblock %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

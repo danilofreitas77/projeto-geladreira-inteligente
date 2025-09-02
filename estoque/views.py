@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .models import item
 
 def categorias(request):
-    # Tela com botões: Bebidas e Comidas
     return render(request, 'estoque/categorias.html')
 
 def listar_por_categoria(request, categoria):
