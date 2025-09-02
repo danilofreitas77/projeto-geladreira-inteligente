@@ -1,0 +1,8 @@
+<h1>Cadastro realizado!</h1>
+<p>Guarde seu QR Code. Ele será usado para login.</p>
+
+{% if qr_code %}
+    <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+    <br>
+    <a download="qr_code.png" href="data:image/png;base64,{{ qr_code }}">Baixar QR Code</a>
+{% endif %}

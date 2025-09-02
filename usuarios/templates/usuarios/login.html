@@ -1,0 +1,12 @@
+<h1>Login via QR Code</h1>
+
+{% if erro %}
+<p style="color:red">{{ erro }}</p>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <label>Token QR:</label>
+    <input type="text" name="token_qr" placeholder="Cole o token QR aqui">
+    <button type="submit">Entrar</button>
+</form>
