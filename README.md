@@ -10,7 +10,7 @@ Sistema de gerenciamento e compras de produtos de uma "geladeira inteligente" pa
 - Envio de relatório de compras por e-mail para o morador.
 
 ## 🛠️ Tecnologias Utilizadas
-- **Python 3.12**
+- **Python 3.13.1**
 - **Django**
 - **SQLite (padrão do Django)**
 - **Git/GitHub**
