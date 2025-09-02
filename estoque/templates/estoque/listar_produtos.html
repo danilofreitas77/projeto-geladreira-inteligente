@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-3">Produtos: {{ categoria|capfirst }}</h2>
+<div class="row">
+    {% for produto in produtos %}
+    <div class="col-md-3 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ produto.produto }}</h5>
+                <p>Qtd: {{ produto.quantidade }}</p>
+                <p>R$ {{ produto.valor }}</p>
+                <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>Nenhum produto disponível nesta categoria.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center mt-4">
+    <h2>Escolha uma categoria</h2>
+    <div class="d-flex justify-content-center gap-3 mt-3">
+        <a href="{% url 'listar_por_categoria' 'bebida' %}" class="btn btn-primary btn-lg">Bebidas</a>
+        <a href="{% url 'listar_por_categoria' 'comida' %}" class="btn btn-success btn-lg">Comidas</a>
+    </div>
+</div>
+{% endblock %}

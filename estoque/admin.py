@@ -1,4 +1,6 @@
 from django.contrib import admin
 from .models import item
 
-admin.site.register(item)
+@admin.register(item)
+class ItemAdmin(admin.ModelAdmin):
+    list_display = ('produto', 'categoria', 'valor')
