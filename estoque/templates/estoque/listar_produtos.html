@@ -32,7 +32,11 @@
         <h3>Adicionar <span id="nomeProduto"></span></h3>
         <p>Disponível: <span id="estoqueProduto"></span></p>
         <input type="number" id="quantidadeProduto" min="1" value="1" class="form-control mb-2">
-        <button id="confirmarAdd" class="btn btn-success">Adicionar</button>
+        <button id="confirmarAdd" 
+        data-id="{{ produto.id }}"
+        data-nome="{{ produto.produto }}"
+        data-estoque="{{ produto.quantidade }}"
+        class="btn btn-success">Adicionar</button>
         <button onclick="document.getElementById('modalQuantidade').classList.add('d-none')" class="btn btn-secondary mt-2">Fechar</button>
     </div>
 </div>

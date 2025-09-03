@@ -5,5 +5,5 @@ class CompraSerializer(serializers.ModelSerializer):
     total = serializers.ReadOnlyField()
 
     class Meta:
-        model = Compra()
-        fiels = ['id', 'usuario', 'produto', 'quantidade', 'data', 'total']
+        model = Compra
+        fielss = ['id', 'usuario', 'produto', 'quantidade', 'data', 'total']

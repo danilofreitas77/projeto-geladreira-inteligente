@@ -1,3 +1,5 @@
+console.log("Carrinho.js carregado");
+
 document.addEventListener("DOMContentLoaded", function() {
     const modal = document.getElementById("modalQuantidade");
     const nomeProdutoSpan = document.getElementById("nomeProduto");
@@ -31,19 +33,54 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Fechar modal pelo botão de fechar
-    document.querySelector("#modalQuantidade button.btn-secondary").addEventListener("click", function() {
-        modal.classList.add("d-none");
-    });
-
-    // Apenas teste: mostrar alerta ao clicar em confirmar
+    // Confirmar
     confirmarBtn.addEventListener("click", function() {
         const quantidade = parseInt(quantidadeInput.value);
+
         if (quantidade > 0 && quantidade <= estoqueDisponivel) {
-            alert(`Adicionar ${quantidade} do produto ${nomeProdutoSpan.textContent}`);
-            modal.classList.add("d-none");
+            fetch("/api/carrinho/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": getCookie("csrftoken")
+                },
+                body: JSON.stringify({
+                    item: produtoId,
+                    quantidade: quantidade
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert("✅ Produto adicionado ao carrinho!");
+                    modal.classList.add("d-none");
+                    location.reload();
+                } else {
+                    alert("Erro: " + (data.erro || "Falha inesperada"));
+                }
+            })
+            .catch(err => {
+                console.error("Erro na requisição:", err);
+                alert("Erro inesperado.");
+            });
         } else {
             alert(`Quantidade inválida. Máximo disponível: ${estoqueDisponivel}`);
         }
     });
 });
+
+// Função helper pro CSRF
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+        const cookies = document.cookie.split(";");
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + "=")) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}

@@ -18,11 +18,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 
+from django.urls import path, include
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("usuarios/", include("usuarios.urls")),
-    path('estoque/', include('estoque.urls')),
 
-    path("", RedirectView.as_view(url="/usuarios/cadastro/")),
-    path('api/', include('compras.urls')),
+    # Páginas (UI)
+    path('usuarios/', include('usuarios.urls')),
+    path('estoque/', include('estoque.urls')),
+    path('compras/', include('compras.urls')),   # <-- carrinho como página aqui
+
+    # APIs
+    path('api/', include('compras.api_urls')),   # <-- apenas endpoints DRF aqui
 ]
+
