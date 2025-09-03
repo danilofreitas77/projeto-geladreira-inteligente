@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% load static %}
+<script src="{% static 'estoque/produtos.js' %}"></script>
+
 
 {% block content %}
 <h2 class="mb-3">Produtos: {{ categoria|capfirst }}</h2>
@@ -10,12 +13,41 @@
                 <h5 class="card-title">{{ produto.produto }}</h5>
                 <p>Qtd: {{ produto.quantidade }}</p>
                 <p>R$ {{ produto.valor }}</p>
-                <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
+                <a href="#" class="btn btn-primary btnAdicionar" data-id="{{ produto.id }}" data-bs-toggle="modal" data-bs-target="#modalProduto">
+                Adicionar ao carrinho
+                </a>
+
             </div>
         </div>
     </div>
     {% empty %}
     <p>Nenhum produto disponível nesta categoria.</p>
     {% endfor %}
+
+<!-- Modal padrão (um só, vamos atualizar dinamicamente via JS) -->
+<div class="modal fade" id="modalProduto" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalProdutoTitulo">Adicionar ao carrinho</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formAdicionarCarrinho">
+          <div class="mb-3">
+            <label for="quantidadeProduto" class="form-label">Quantidade</label>
+            <input type="number" class="form-control" id="quantidadeProduto" name="quantidade" min="1" value="1">
+          </div>
+          <input type="hidden" id="produtoId" name="produto_id">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnConfirmarAdicionar">Adicionar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 {% endblock %}
