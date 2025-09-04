@@ -2,31 +2,41 @@
 {% load static %}
 
 {% block content %}
-<h2>Seu Carrinho</h2>
+<h2>Carrinho de Compras</h2>
+
+{% if compras %}
 <table class="table">
     <thead>
         <tr>
             <th>Produto</th>
-            <th>Qtd</th>
+            <th>Quantidade</th>
             <th>Preço unitário</th>
-            <th>Total</th>
+            <th>Subtotal</th>
+            <th>Excluir</th>
         </tr>
     </thead>
     <tbody>
         {% for compra in compras %}
         <tr>
-            <td>{{ compra.produto.produto }}</td>
+            <td>{{ compra.item.produto }}</td>
             <td>{{ compra.quantidade }}</td>
-            <td>R$ {{ compra.produto.valor }}</td>
+            <td>R$ {{ compra.item.preco }}</td>
             <td>R$ {{ compra.total }}</td>
+            <td><button class="btn btn-danger btnRemover" data-id="{{ compra.item.id }}">Remover</button></td>
         </tr>
-        {% empty %}
-        <tr><td colspan="4">Carrinho vazio</td></tr>
         {% endfor %}
+        <tr>
+            <td colspan="3"><strong>Total</strong></td>
+            <td><strong>R$ {{ total }}</strong></td>
+        </tr>
     </tbody>
 </table>
+<a href="#" class="btn btn-success">Finalizar Compra</a>
+{% else %}
+<p>Seu carrinho está vazio.</p>
+{% endif %}
+{% endblock %}  {# <- Fecha o bloco content #}
 
-<h4>Total: R$ {{ total }}</h4>
-
-<a href="" class="btn btn-success">Finalizar Compra</a>
-{% endblock %}  {# <=== ESSA LINHA FECHA O BLOCK #}
+{% block scripts %}
+<script src="{% static 'estoque/produtos.js' %}"></script>
+{% endblock %}

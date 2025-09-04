@@ -7,8 +7,9 @@
     <title>{% block title %}Geladeira Inteligente - Take and Go{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
 
+<<<<<<< HEAD
     <header class="bg-primary text-white p-3 mb-4">
         <div class="container">
             <h1>Geladeira Inteligente</h1>
@@ -16,9 +17,27 @@
  <a href="{% url 'carrinho' %}">🛒 Carrinho</a>
 
 
+=======
+    <header class="mb-4">
+        <nav class="navbar navbar-expand-lg bg-info">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Geladeira Inteligente</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                    
+                    </ul>
+            </div>
+        </nav>
+>>>>>>> atualizar-versao
     </header>
 
-    <main class="container mb-4">
+    <main class="container mb-4 flex-fill">
         {% block content %}{% endblock %}
     </main>
 
@@ -29,5 +48,6 @@
     {% block scripts %}{% endblock %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>

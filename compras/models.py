@@ -9,4 +9,9 @@ class Compra(models.Model):
     data = models.DateTimeField(auto_now_add=True)
 
     def total(self):
+<<<<<<< HEAD
         return self.produto.valor * self.quantidade  # "valor" conforme teu modelo item
+=======
+        return self.item.valor * self.quantidade
+
+>>>>>>> atualizar-versao
