@@ -9,5 +9,5 @@ class Compra(models.Model):
     data = models.DateTimeField(auto_now_add=True)
 
     def total(self):
-        return self.item.preco * self.quantidade
+        return self.item.valor * self.quantidade
 
